@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "timelines", "timelines\timelines.csproj", "{4671E2EB-8637-4282-9526-C429E32F21C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timelines", "Timelines\Timelines.csproj", "{4CAC0C85-370A-44AA-9297-B2B664DBB71A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4671E2EB-8637-4282-9526-C429E32F21C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4671E2EB-8637-4282-9526-C429E32F21C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4671E2EB-8637-4282-9526-C429E32F21C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4671E2EB-8637-4282-9526-C429E32F21C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CAC0C85-370A-44AA-9297-B2B664DBB71A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CAC0C85-370A-44AA-9297-B2B664DBB71A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CAC0C85-370A-44AA-9297-B2B664DBB71A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CAC0C85-370A-44AA-9297-B2B664DBB71A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {04C6F189-3759-4294-8622-58B8645E79BA}
+		SolutionGuid = {EC736BBD-41D9-4CDA-88AA-1A5BB0525406}
 	EndGlobalSection
 EndGlobal
