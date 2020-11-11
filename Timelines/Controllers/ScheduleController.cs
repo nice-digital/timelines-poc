@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Timelines.Models;
 using Timelines.Services;
 
 namespace Timelines.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     public class ScheduleController : Controller
     {
@@ -25,8 +23,7 @@ namespace Timelines.Controllers
         [HttpGet]
         public List<Schedule> GetSchedules()
         {
-            var result = _scheduleService.GetSchedules();
-            return result;
+            return _scheduleService.GetSchedules();
         }
     }
 }

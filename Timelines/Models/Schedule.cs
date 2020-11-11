@@ -16,16 +16,16 @@ namespace Timelines.Models
         public string CommitteeStream { get; set; }
         public string ERG { get; set; }
         public string AnticipatedLicenceDates { get; set; }
-        public DateTime ActualLicenceDates { get; set; }
-        public DateTime DateOfDraftScopeConsultation { get; set; }
-        public DateTime InvitationToParticipate { get; set; }
-        public DateTime SendSubmissionToERG { get; set; }
-        public DateTime DeadlineForERGReceipt { get; set; }
-        public DateTime FirstMeeting { get; set; }
-        public DateTime ACDandEvalReportOnWeb { get; set; }
-        public DateTime FADPublished { get; set; }
-        public DateTime CommitteeMeeting { get; set; }
-        public DateTime PublicationDate { get; set; }
+        public string ActualLicenceDates { get; set; }
+        public string DateOfDraftScopeConsultation { get; set; }
+        public string InvitationToParticipate { get; set; }
+        public string SendSubmissionToERG { get; set; }
+        public string DeadlineForERGReceipt { get; set; }
+        public string FirstMeeting { get; set; }
+        public string ACDandEvalReportOnWeb { get; set; }
+        public string FADPublished { get; set; }
+        public string CommitteeMeeting { get; set; }
+        public string PublicationDate { get; set; }
         public string LatestMasterNote { get; set; }
 
     }

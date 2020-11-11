@@ -18,7 +18,8 @@ namespace Timelines.Models
 
         public List<Schedule> GetSchedules()
         {
-            return Schedules.ToList();
+            var schedules = Schedules.ToList();
+            return schedules;
         }
     }
 }

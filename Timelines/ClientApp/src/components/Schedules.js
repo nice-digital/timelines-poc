@@ -7,7 +7,7 @@ export class Schedules extends Component {
         super(props);
         this.state = { schedules: [], loading: true };
 
-        fetch('api/Schedule/getSchedules')
+        fetch('api/Schedule')
             .then(response => response.json())
             .then(data => {
                 this.setState({ schedules: data, loading: false });
@@ -26,12 +26,12 @@ export class Schedules extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {schedules.map(schedule =>
-                        <tr key={forecast.ScheduleId}>
-                            <td>{forecast.Appraisal}</td>
-                            <td>{forecast.ACID}</td>
-                            <td>{forecast.ProcessType}</td>
-                            <td>{forecast.Status}</td>
+                    {schedules.slice(0,10).map(schedule =>
+                        <tr key={schedule.scheduleId}>
+                            <td>{schedule.appraisal}</td>
+                            <td>{schedule.acid}</td>
+                            <td>{schedule.processType}</td>
+                            <td>{schedule.status}</td>
                         </tr>
                     )}
                 </tbody>
@@ -42,7 +42,8 @@ export class Schedules extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : FetchData.renderSchedulesTable(this.state.schedules);
+            : Schedules.renderSchedulesTable(this.state.schedules);
+        console.log(this.state.schedules[0]);
 
         return (
             <div>
