@@ -13,5 +13,11 @@ namespace Timelines.Models
             optionsBuilder.UseSqlite("Data Source=timelines.db");
         }
         public DbSet<Schedule> Schedules { get; set; }
+
+        public List<Schedule> GetSchedules()
+        {
+            var schedules = Schedules.ToList();
+            return schedules;
+        }
     }
 }
