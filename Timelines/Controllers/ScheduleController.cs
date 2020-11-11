@@ -19,11 +19,11 @@ namespace Timelines.Controllers
         }
 
         /// <summary>
-        /// GET: eg. api/ScheduleController
+        /// GET: eg. api/Schedule/GetSchedules
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public List<Schedule> Get()
+        public List<Schedule> GetSchedules()
         {
             var result = _scheduleService.GetSchedules();
             return result;

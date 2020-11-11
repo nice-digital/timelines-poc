@@ -1,13 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Timelines.Models
 {
     public partial class TimelinesContext : DbContext
     {
+        public TimelinesContext(DbContextOptions options) : base(options)
+        {
+
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=timelines.db");
@@ -16,8 +18,7 @@ namespace Timelines.Models
 
         public List<Schedule> GetSchedules()
         {
-            var schedules = Schedules.ToList();
-            return schedules;
+            return Schedules.ToList();
         }
     }
 }
