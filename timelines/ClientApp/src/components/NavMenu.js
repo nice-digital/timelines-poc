@@ -27,12 +27,12 @@ export class NavMenu extends Component {
                 <NavItem>
                     <Glyphicon glyph='th-list' /> Example schedules report
                 </NavItem>
-            </LinkContainer>
-            <LinkContainer to={'/fetchdata'}>
-              <NavItem>
-                <Glyphicon glyph='th-list' /> Fetch data
-              </NavItem>
-            </LinkContainer>
+                </LinkContainer>
+                <LinkContainer to={'/clickup-table'}>
+                    <NavItem>
+                        <Glyphicon glyph='th-list' /> Test clickup table
+                    </NavItem>
+                </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

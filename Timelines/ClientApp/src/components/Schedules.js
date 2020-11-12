@@ -43,7 +43,6 @@ export class Schedules extends Component {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
             : Schedules.renderSchedulesTable(this.state.schedules);
-        console.log(this.state.schedules[0]);
 
         return (
             <div>
