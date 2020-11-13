@@ -9,7 +9,7 @@ namespace Timelines.Models
     {
         public int ScheduleId { get; set; }
         public string Appraisal { get; set; }
-        public int ACID { get; set; }
+        public string ACID { get; set; }
         public string ProcessType { get; set; }
         public string Status { get; set; }
         public string CommitteeLetter { get; set; }

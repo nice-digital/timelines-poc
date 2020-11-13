@@ -25,14 +25,19 @@ export class NavMenu extends Component {
             </LinkContainer>
             <LinkContainer to={'/schedules'}>
                 <NavItem>
-                    <Glyphicon glyph='th-list' /> Example schedules report
+                    <Glyphicon glyph='th-list' /> Test planning tools table
                 </NavItem>
-                </LinkContainer>
-                <LinkContainer to={'/clickup-table'}>
-                    <NavItem>
-                        <Glyphicon glyph='th-list' /> Test clickup table
-                    </NavItem>
-                </LinkContainer>
+            </LinkContainer>
+            <LinkContainer to={'/clickup-table'}>
+                <NavItem>
+                    <Glyphicon glyph='th-list' /> Test clickup table
+                </NavItem>
+            </LinkContainer>
+            <LinkContainer to={'/combined-table'}>
+                <NavItem>
+                    <Glyphicon glyph='th-list' /> Test combined table
+                </NavItem>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -12,7 +12,8 @@ export class ClickupTable extends Component {
     componentDidMount(){
         axios({
             method: 'get',
-            url: 'https://private-anon-a4a3fe7fda-clickup20.apiary-mock.com/api/v2/list/32024370/task',
+            //In the real thing we're going to need to get the lists in the folder we are interested in, then do this for each list I think?
+            url: process.env.REACT_APP_CLICKUP_API,
             headers: {
                 "content-type": "application/json",
                 "authorization": `Bearer ${process.env.REACT_APP_CLICKUP_API_TOKEN}`

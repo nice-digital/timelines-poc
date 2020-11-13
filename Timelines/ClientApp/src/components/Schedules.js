@@ -46,8 +46,8 @@ export class Schedules extends Component {
 
         return (
             <div>
-                <h1>Schedules</h1>
-                <p>This component demonstrates fetching data from the server.</p>
+                <h1>Planning tool schedules</h1>
+                <p>This component demonstrates fetching data from the mock planning tool db</p>
                 {contents}
             </div>
         );
