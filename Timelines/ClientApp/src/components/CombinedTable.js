@@ -20,6 +20,9 @@ export class CombinedTable extends Component {
         })
             .then(response => {
                 this.setState({ clickUp: response.data, loading: false });
+            })
+            .catch(error => {
+                console.log(error);
             });
 
 

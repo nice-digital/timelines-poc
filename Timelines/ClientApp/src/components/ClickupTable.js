@@ -22,6 +22,9 @@ export class ClickupTable extends Component {
         })
             .then(response => {
                 this.setState({ schedules: response.data, loading: false });
+            })
+            .catch(error => {
+                console.log(error);
             });
     }
 
