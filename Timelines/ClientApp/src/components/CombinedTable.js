@@ -15,9 +15,7 @@ export class CombinedTable extends Component {
             //In the real thing we're going to need to get the lists in the folder we are interested in, then do this for each list I think?
             url: process.env.REACT_APP_CLICKUP_API,
             headers: {
-                "content-type": "application/json",
                 "authorization": `Bearer ${process.env.REACT_APP_CLICKUP_API_TOKEN}`,
-                "Accept": "application/json"
             }
         })
             .then(response => {

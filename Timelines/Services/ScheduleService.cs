@@ -5,7 +5,7 @@ namespace Timelines.Services
 {
     public interface IScheduleService
     {
-        List<Schedule> GetSchedules();
+        List<Schedule> GetPlanningToolSchedules();
     }
     public class ScheduleService : IScheduleService
     {
@@ -16,9 +16,9 @@ namespace Timelines.Services
             _context = timelinesContext;
         }
 
-        public List<Schedule> GetSchedules()
+        public List<Schedule> GetPlanningToolSchedules()
         {
-            return _context.GetSchedules();
+            return _context.GetPlanningToolSchedules();
         }
     }
 }

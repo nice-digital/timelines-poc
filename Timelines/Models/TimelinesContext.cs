@@ -16,7 +16,7 @@ namespace Timelines.Models
         //}
         public DbSet<Schedule> Schedules { get; set; }
 
-        public List<Schedule> GetSchedules()
+        public List<Schedule> GetPlanningToolSchedules()
         {
             var schedules = Schedules.ToList();
             return schedules;
