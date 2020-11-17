@@ -16,14 +16,12 @@ export class CombinedTable extends Component {
             url: process.env.REACT_APP_CLICKUP_API,
             headers: {
                 "content-type": "application/json",
-                "authorization": `Bearer ${process.env.REACT_APP_CLICKUP_API_TOKEN}`
+                "authorization": `Bearer ${process.env.REACT_APP_CLICKUP_API_TOKEN}`,
+                "Accept": "application/json"
             }
         })
             .then(response => {
                 this.setState({ clickUp: response.data, loading: false });
-            })
-            .catch(error => {
-                console.log(error.response.data);
             });
 
 

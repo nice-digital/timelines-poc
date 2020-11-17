@@ -10,10 +10,10 @@ namespace Timelines.Models
         {
 
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source=timelines.db");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlite("Data Source=timelines.db");
+        //}
         public DbSet<Schedule> Schedules { get; set; }
 
         public List<Schedule> GetSchedules()
