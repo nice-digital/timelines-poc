@@ -16,8 +16,7 @@ export class ClickupTable extends Component {
             url: process.env.REACT_APP_CLICKUP_API,
             headers: {
                 "content-type": "application/json",
-                "authorization": `Bearer ${process.env.REACT_APP_CLICKUP_API_TOKEN}`,
-                "Accept": "application/json"
+                "authorization": `\'${process.env.REACT_APP_CLICKUP_API_TOKEN}\'`,
             }
         })
             .then(response => {
