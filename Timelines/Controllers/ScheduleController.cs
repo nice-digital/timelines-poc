@@ -23,7 +23,8 @@ namespace Timelines.Controllers
         [HttpGet]
         public List<Schedule> GetSchedules()
         {
-            return _scheduleService.GetPlanningToolSchedules();
+            var response = _scheduleService.GetPlanningToolSchedules();
+            return response;
         }
     }
 }

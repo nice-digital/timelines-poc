@@ -1,33 +1,20 @@
 ﻿import React, { Component } from 'react';
-const axios = require('axios');
 
 export class ClickupTable extends Component {
     displayName = ClickupTable.name
 
     constructor(props) {
         super(props);
-        this.state = { schedules: [], loading: true };
-    }
+        this.state = { clickUp: [], loading: true };
 
-    componentDidMount(){
-        axios({
-            method: 'get',
-            //In the real thing we're going to need to get the lists in the folder we are interested in, then do this for each list I think?
-            url: process.env.REACT_APP_CLICKUP_API,
-            headers: {
-                "content-type": "application/json",
-                "authorization": `\'${process.env.REACT_APP_CLICKUP_API_TOKEN}\'`,
-            }
-        })
-            .then(response => {
-                this.setState({ schedules: response.data, loading: false });
-            })
-            .catch(error => {
-                console.log(error);
+        fetch('api/Tasks')
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ clickUp: data.tasks, loading: false });
             });
     }
 
-    static renderSchedulesTable(schedules) {
+    static renderSchedulesTable(clickUp) {
         return (
             <table className='table'>
                 <thead>
@@ -39,12 +26,12 @@ export class ClickupTable extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {schedules.map(schedule =>
-                        <tr key={schedule.id}>
-                            <td>{schedule.name}</td>
-                            <td>{schedule.id}</td>
-                            <td>{schedule.creator.username}</td>
-                            <td>{schedule.status.status}</td>
+                    {clickUp.map(task =>
+                        <tr key={task.id}>
+                            <td>{task.name}</td>
+                            <td>{task.id}</td>
+                            <td>{task.creator.username}</td>
+                            <td>{task.status.status}</td>
                         </tr>
                     )}
                 </tbody>
@@ -55,7 +42,7 @@ export class ClickupTable extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : ClickupTable.renderSchedulesTable(this.state.schedules);
+            : ClickupTable.renderSchedulesTable(this.state.clickUp);
 
         return (
             <div>
