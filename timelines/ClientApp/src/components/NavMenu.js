@@ -23,15 +23,20 @@ export class NavMenu extends Component {
                 <Glyphicon glyph='home' /> Home
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/counter'}>
-              <NavItem>
-                <Glyphicon glyph='education' /> Counter
-              </NavItem>
+            <LinkContainer to={'/schedules'}>
+                <NavItem>
+                    <Glyphicon glyph='th-list' /> Test planning tools table
+                </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/fetchdata'}>
-              <NavItem>
-                <Glyphicon glyph='th-list' /> Fetch data
-              </NavItem>
+            <LinkContainer to={'/clickup-table'}>
+                <NavItem>
+                    <Glyphicon glyph='th-list' /> Test clickup table
+                </NavItem>
+            </LinkContainer>
+            <LinkContainer to={'/combined-table'}>
+                <NavItem>
+                    <Glyphicon glyph='th-list' /> Test combined table
+                </NavItem>
             </LinkContainer>
           </Nav>
         </Navbar.Collapse>
