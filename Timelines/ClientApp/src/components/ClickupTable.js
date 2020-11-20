@@ -7,7 +7,7 @@ export class ClickupTable extends Component {
         super(props);
         this.state = { clickUp: [], loading: true };
 
-        fetch('api/Tasks')
+        fetch('api/ClickUpTasks')
             .then(response => response.json())
             .then(data => {
                 this.setState({ clickUp: data.tasks, loading: false });

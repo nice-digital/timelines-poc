@@ -9,8 +9,7 @@ export class CombinedTable extends Component {
     }
 
     componentDidMount() {
-        //In the real thing we will need to get the list that matches the schedule, then find the relevant tasks for the columns 
-        fetch('api/Tasks')
+        fetch('api/ClickUpTasks')
             .then(response => response.json())
             .then(data => {
                 this.setState({ clickUp: data.tasks, loading: false });

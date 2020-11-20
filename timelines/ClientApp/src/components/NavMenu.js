@@ -38,6 +38,11 @@ export class NavMenu extends Component {
                     <Glyphicon glyph='th-list' /> Test combined table
                 </NavItem>
             </LinkContainer>
+            <LinkContainer to={'/list-level-table'}>
+                <NavItem>
+                    <Glyphicon glyph='th-list' /> Test list level table
+                </NavItem>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
