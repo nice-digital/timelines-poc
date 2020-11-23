@@ -1,5 +1,6 @@
 ﻿using Chinchilla.ClickUp.Responses;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Timelines.Services;
 
@@ -36,6 +37,18 @@ namespace Timelines.Controllers
         public Task<ResponseFolderlessLists> GetLists()
         {
             var response = _clickUpService.GetListsAsync();
+            return response;
+        }
+
+        /// <summary>
+        /// GET: eg. api/ClickUpTasksForList
+        /// </summary>
+        /// <returns></returns>
+        [Route("api/[controller]TasksForLists")]
+        [HttpGet]
+        public Task<IEnumerable<ResponseTasks>> GetTasksForListsAsync()
+        {
+            var response = _clickUpService.GetTasksForListsAsync();
             return response;
         }
     }

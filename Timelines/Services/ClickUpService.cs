@@ -13,6 +13,7 @@ namespace Timelines.Services
     {
         Task<ResponseTasks> GetTasksAsync(string listId = "33997373");
         Task<ResponseFolderlessLists> GetListsAsync();
+        Task<IEnumerable<ResponseTasks>> GetTasksForListsAsync();
     }
     public class ClickUpService : IClickUpService
     {
@@ -48,6 +49,7 @@ namespace Timelines.Services
             {
                 httpClient.DefaultRequestHeaders.TryAddWithoutValidation("authorization", Configuration["clickupAccessToken"]);
 
+                //This folder is the one for appraisals in the CHTE workspace
                 using (var response = await httpClient.GetAsync("folder/15148580/list"))
                 {
                     string responseData = await response.Content.ReadAsStringAsync();
@@ -55,6 +57,20 @@ namespace Timelines.Services
                     return deserializedData;
                 }
             }
+        }
+
+        public async Task<IEnumerable<ResponseTasks>> GetTasksForListsAsync()
+        {
+            var allTasks = new List<Task<ResponseTasks>>();
+            var clickUpLists = GetListsAsync();
+
+            clickUpLists.Result.Lists.ForEach(delegate (ResponseModelList list)
+            {
+                var listTasks = GetTasksAsync(list.Id);
+                allTasks.Add(listTasks);
+            });
+
+            return await Task.WhenAll<ResponseTasks>(allTasks);
         }
     }
 }
