@@ -47,12 +47,11 @@ export class ListsTable extends Component {
         let contents = !this.state.loading
             ? ListsTable.renderListsTable(this.state.clickUpLists)
             : <p><em>Loading...</em></p>;
-        console.log(this.state.clickUpLists);
 
         return (
             <div>
                 <h1>Clickup lists</h1>
-                <p>This component demonstrates data held at the list level</p>
+                <p>This component demonstrates data held at the list level from clickup</p>
                 {contents}
             </div>
         );

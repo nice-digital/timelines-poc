@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Chinchilla.ClickUp.Responses;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using Chinchilla.ClickUp.Responses.Model;
 using Timelines.Models;
 
 namespace Timelines.Services
@@ -14,7 +13,7 @@ namespace Timelines.Services
     {
         Task<ResponseTasks> GetTasksAsync(string listId = "33997373");
         Task<ResponseFolderlessLists> GetListsAsync();
-        Task<IEnumerable<ResponseTasks>> GetTasksForListsAsync();
+        Task<IEnumerable<ListWithTasks>> GetTasksWithListsAsync();
     }
     public class ClickUpService : IClickUpService
     {
@@ -60,33 +59,17 @@ namespace Timelines.Services
             }
         }
 
-        //public async Task<IEnumerable<ListWithTasks>> GetTasksForListsAsync()
-        //{
-        //    var allTasks = new List<ListWithTasks>();
-        //    var clickUpLists = GetListsAsync();
-
-        //    clickUpLists.Result.Lists.ForEach(async delegate (ResponseModelList list)
-        //    {
-        //       var listTasks = await GetTasksAsync(list.Id);
-        //       var listWithTasks = new ListWithTasks(list.Id, list.Name, listTasks);
-        //       allTasks.Add(listWithTasks);
-
-        //    });
-        //    return await Task.WhenAll<ListWithTasks>((IEnumerable<Task<ListWithTasks>>)allTasks);
-        //}
-
-        public async Task<IEnumerable<ResponseTasks>> GetTasksForListsAsync()
+        public async Task<IEnumerable<ListWithTasks>> GetTasksWithListsAsync()
         {
-            var allTasks = new List<Task<ResponseTasks>>();
-            var clickUpLists = GetListsAsync();
-
-            clickUpLists.Result.Lists.ForEach(delegate (ResponseModelList list)
+            var allTasks = new List<ListWithTasks>();
+            var clickUpLists = await GetListsAsync();
+            foreach (var list in clickUpLists.Lists)
             {
-                var listTasks = GetTasksAsync(list.Id);
-                allTasks.Add(listTasks);
-            });
-
-            return await Task.WhenAll<ResponseTasks>(allTasks);
+                var listTasks = await GetTasksAsync(list.Id);
+                var listWithTasks = new ListWithTasks(list.Id, list.Name, listTasks);
+                allTasks.Add(listWithTasks);
+            }
+            return allTasks;
         }
     }
 }

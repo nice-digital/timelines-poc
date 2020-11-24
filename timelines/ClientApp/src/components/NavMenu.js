@@ -38,14 +38,9 @@ export class NavMenu extends Component {
                     <Glyphicon glyph='th-list' /> Clickup lists
                 </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/basic-combined-table'}>
+            <LinkContainer to={'/combined-table'}>
                 <NavItem>
-                    <Glyphicon glyph='th-list' /> Basic combined table
-                </NavItem>
-            </LinkContainer>
-            <LinkContainer to={'/full-combined-table'}>
-                <NavItem>
-                    <Glyphicon glyph='th-list' /> Full combined table
+                    <Glyphicon glyph='th-list' /> Combined table
                 </NavItem>
             </LinkContainer>
           </Nav>

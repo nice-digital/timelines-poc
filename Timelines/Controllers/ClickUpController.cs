@@ -42,14 +42,14 @@ namespace Timelines.Controllers
         }
 
         /// <summary>
-        /// GET: eg. api/ClickUpTasksForList
+        /// GET: eg. api/ClickUpTasksWithLists
         /// </summary>
         /// <returns></returns>
-        [Route("api/[controller]TasksForLists")]
+        [Route("api/[controller]TasksWithLists")]
         [HttpGet]
-        public Task<IEnumerable<ResponseTasks>> GetTasksForListsAsync()
+        public Task<IEnumerable<ListWithTasks>> GetTasksWithListsAsync()
         {
-            var response = _clickUpService.GetTasksForListsAsync();
+            var response = _clickUpService.GetTasksWithListsAsync();
             return response;
         }
     }
