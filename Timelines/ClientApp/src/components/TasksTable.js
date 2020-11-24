@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import moment from 'moment';
 
 export class TasksTable extends Component {
     displayName = TasksTable.name
@@ -19,9 +20,9 @@ export class TasksTable extends Component {
             <table className='table'>
                 <thead>
                     <tr>
-                        <th>Appraisal</th>
-                        <th>ACID</th>
-                        <th>ProcessType</th>
+                        <th>Task name</th>
+                        <th>Task id</th>
+                        <th>Due date</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -30,7 +31,7 @@ export class TasksTable extends Component {
                         <tr key={task.id}>
                             <td>{task.name}</td>
                             <td>{task.id}</td>
-                            <td>{task.creator.username}</td>
+                            <td>{task.due_date ? moment(task.due_date).format("Do MMM YYYY") : "-"}</td>
                             <td>{task.status.status}</td>
                         </tr>
                     )}
