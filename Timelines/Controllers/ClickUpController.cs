@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Timelines.Models;
 using Timelines.Services;
 
 namespace Timelines.Controllers
@@ -46,7 +47,7 @@ namespace Timelines.Controllers
         /// <returns></returns>
         [Route("api/[controller]TasksForLists")]
         [HttpGet]
-        public Task<IEnumerable<ResponseTasks>> GetTasksForListsAsync()
+        public Task<IEnumerable<ListWithTasks>> GetTasksForLists()
         {
             var response = _clickUpService.GetTasksForListsAsync();
             return response;

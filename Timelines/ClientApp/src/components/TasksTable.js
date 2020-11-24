@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 
-export class ClickupTable extends Component {
-    displayName = ClickupTable.name
+export class TasksTable extends Component {
+    displayName = TasksTable.name
 
     constructor(props) {
         super(props);
@@ -14,7 +14,7 @@ export class ClickupTable extends Component {
             });
     }
 
-    static renderSchedulesTable(clickUp) {
+    static renderTasksTable(clickUp) {
         return (
             <table className='table'>
                 <thead>
@@ -42,12 +42,12 @@ export class ClickupTable extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : ClickupTable.renderSchedulesTable(this.state.clickUp);
+            : TasksTable.renderTasksTable(this.state.clickUp);
 
         return (
             <div>
                 <h1>Clickup tasks</h1>
-                <p>This component demonstrates fetching data from clickup.</p>
+                <p>This component demonstrates fetching task level data from clickup.</p>
                 {contents}
             </div>
         );
