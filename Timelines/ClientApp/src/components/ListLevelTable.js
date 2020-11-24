@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import moment from 'moment';
 
 export class ListLevelTable extends Component {
     displayName = ListLevelTable.name
@@ -9,7 +10,6 @@ export class ListLevelTable extends Component {
     }
 
     componentDidMount() {
-        //In the real thing we will need to get the list that matches the schedule, then find the relevant tasks for the columns 
         fetch('api/ClickUpTasksForLists')
             .then(response => response.json())
             .then(data => {
@@ -39,8 +39,8 @@ export class ListLevelTable extends Component {
                         <th>ACID (List id from clickup)</th>
                         <th style={{ color: "green" }}>Process Type</th>
                         <th style={{ color: "green" }}>Committee</th>
-                        <th style={{ color: "red" }}>Publish date</th>
                         <th style={{ color: "red" }}>Consultation date</th>
+                        <th style={{ color: "red" }}>Guidance publication date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,8 +51,8 @@ export class ListLevelTable extends Component {
                             <td>{list.id}</td>
                             <td>{planningTools.find(schedule => schedule.acid === list.id) ? planningTools.find(schedule => schedule.acid === list.id).processType : "-"}</td>
                             <td>{planningTools.find(schedule => schedule.acid === list.id) ? planningTools.find(schedule => schedule.acid === list.id).committeeLetter : "-"}</td>
-                            <td>{/*clickUpTasks.filter(schedule => schedule.tasks.list.id == list.id).find(schedule => schedule.tasks.tags.name == "publication").due_date*/}</td>
-                            <td>{/*find the task that is in that list, and that is the consultation date and get its due date*/}</td>
+                            <td>{moment(clickUpTasks.filter(schedule => schedule.tasks[0].list.id == list.id)[0].tasks.find(task => task.name == "Consultation").due_date).format("Do MMM YYYY")}</td>
+                            <td>{moment(clickUpTasks.filter(schedule => schedule.tasks[0].list.id == list.id)[0].tasks.find(task => task.name == "Publish guidance").due_date).format("Do MMM YYYY")}</td>
                         </tr>
                     )}
                 </tbody>
@@ -64,10 +64,7 @@ export class ListLevelTable extends Component {
         let contents = !this.state.loading && !this.state.loading2 && !this.state.loading3
             ? ListLevelTable.renderSchedulesTable(this.state.clickUpLists, this.state.planningTools, this.state.clickUpTasks)
             : <p><em>Loading...</em></p>;
-        console.log(this.state.clickUpTasks);
-        //console.log((!this.state.loading && !this.state.loading3) ? this.state.clickUpTasks.filter(schedules => schedules.tasks[0].list.id == this.state.clickUpLists[0].id) : "");
-        //console.log((!this.state.loading && !this.state.loading3) ? this.state.clickUpTasks.filter(schedules => schedules.tasks[0].list.id == this.state.clickUpLists[0].id)[0].tasks.find(task => task.tags.name == "consultation") : "");
-        
+
         return (
             <div>
                 <h1>Combined lists, tasks and schedules</h1>

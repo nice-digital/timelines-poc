@@ -14,7 +14,7 @@ namespace Timelines.Services
     {
         Task<ResponseTasks> GetTasksAsync(string listId = "33997373");
         Task<ResponseFolderlessLists> GetListsAsync();
-        Task<IEnumerable<ListWithTasks>> GetTasksForListsAsync();
+        Task<IEnumerable<ResponseTasks>> GetTasksForListsAsync();
     }
     public class ClickUpService : IClickUpService
     {
@@ -60,35 +60,33 @@ namespace Timelines.Services
             }
         }
 
-        public async Task<IEnumerable<ListWithTasks>> GetTasksForListsAsync()
-        {
-            var allTasks = new List<ListWithTasks>();
-            var clickUpLists = GetListsAsync();
-
-            clickUpLists.Result.Lists.ForEach(async delegate (ResponseModelList list)
-            {
-                using (ResponseTasks listTasks = await GetTasksAsync(list.Id))
-                {
-                    var listWithTasks = new ListWithTasks(list.Id, list.Name, listTasks);
-                    allTasks.Add(listWithTasks);
-                }
-                    
-            });
-            return await Task.WhenAll<ListWithTasks>(allTasks);
-        }
-
-        //public async Task<IEnumerable<ResponseTasks>> GetTasksForListsAsync2()
+        //public async Task<IEnumerable<ListWithTasks>> GetTasksForListsAsync()
         //{
-        //    var allTasks = new List<Task<ResponseTasks>>();
+        //    var allTasks = new List<ListWithTasks>();
         //    var clickUpLists = GetListsAsync();
 
-        //    clickUpLists.Result.Lists.ForEach(delegate (ResponseModelList list)
+        //    clickUpLists.Result.Lists.ForEach(async delegate (ResponseModelList list)
         //    {
-        //        var listTasks = GetTasksAsync(list.Id);
-        //        allTasks.Add(listTasks);
-        //    });
+        //       var listTasks = await GetTasksAsync(list.Id);
+        //       var listWithTasks = new ListWithTasks(list.Id, list.Name, listTasks);
+        //       allTasks.Add(listWithTasks);
 
-        //    return await Task.WhenAll<ResponseTasks>(allTasks);
+        //    });
+        //    return await Task.WhenAll<ListWithTasks>((IEnumerable<Task<ListWithTasks>>)allTasks);
         //}
+
+        public async Task<IEnumerable<ResponseTasks>> GetTasksForListsAsync()
+        {
+            var allTasks = new List<Task<ResponseTasks>>();
+            var clickUpLists = GetListsAsync();
+
+            clickUpLists.Result.Lists.ForEach(delegate (ResponseModelList list)
+            {
+                var listTasks = GetTasksAsync(list.Id);
+                allTasks.Add(listTasks);
+            });
+
+            return await Task.WhenAll<ResponseTasks>(allTasks);
+        }
     }
 }

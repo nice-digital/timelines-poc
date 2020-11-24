@@ -6,6 +6,7 @@
     "@nice-digital/design-system": "^1.0.36-alpha.0",
     "axios": "^0.21.0",
     "bootstrap": "^3.4.1",
+    "moment": "^2.29.1",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.0.0",

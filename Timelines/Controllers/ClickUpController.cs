@@ -47,7 +47,7 @@ namespace Timelines.Controllers
         /// <returns></returns>
         [Route("api/[controller]TasksForLists")]
         [HttpGet]
-        public Task<IEnumerable<ListWithTasks>> GetTasksForLists()
+        public Task<IEnumerable<ResponseTasks>> GetTasksForListsAsync()
         {
             var response = _clickUpService.GetTasksForListsAsync();
             return response;
