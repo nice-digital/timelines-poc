@@ -3,7 +3,8 @@ import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { Schedules } from './components/Schedules';
-import { ClickupTable } from './components/ClickupTable';
+import { TasksTable } from './components/TasksTable';
+import { ListsTable } from './components/ListsTable';
 import { CombinedTable } from './components/CombinedTable';
 
 export default class App extends Component {
@@ -14,7 +15,8 @@ export default class App extends Component {
       <Layout>
             <Route exact path='/' component={Home} />
             <Route path='/schedules' component={Schedules} />
-            <Route path='/clickup-table' component={ClickupTable} />
+            <Route path='/clickup-tasks' component={TasksTable} />
+            <Route path='/clickup-lists' component={ListsTable} />
             <Route path='/combined-table' component={CombinedTable} />
       </Layout>
     );

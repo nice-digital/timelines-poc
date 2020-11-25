@@ -1,19 +1,19 @@
 ﻿import React, { Component } from 'react';
+import moment from 'moment';
 
 export class CombinedTable extends Component {
     displayName = CombinedTable.name
 
     constructor(props) {
         super(props);
-        this.state = { clickUp: [], planningTools: [], loading: true, loading2: true };
+        this.state = { clickUpLists: [], planningTools: [], loading: true, loading2: true };
     }
 
     componentDidMount() {
-        //In the real thing we will need to get the list that matches the schedule, then find the relevant tasks for the columns 
-        fetch('api/Tasks')
+        fetch('api/ClickUpTasksWithLists')
             .then(response => response.json())
             .then(data => {
-                this.setState({ clickUp: data.tasks, loading: false });
+                this.setState({ clickUpLists: data, loading: false });
             });
 
         fetch('api/Schedule')
@@ -23,30 +23,30 @@ export class CombinedTable extends Component {
             });
     }
 
-    static renderSchedulesTable(clickUp, planningTools) {
+    static renderSchedulesTable(clickUpLists, planningTools) {
         return (
             <table className='table'>
                 <thead>
                     <tr>
+                        <th>List Name</th>
                         <th style={{ color: "green" }}>Appraisal</th>
-                        <th>Task name</th>
-                        <th>ACID</th>
+                        <th>ACID (List id from clickup)</th>
                         <th style={{ color: "green" }}>Process Type</th>
                         <th style={{ color: "green" }}>Committee</th>
-                        <th>User</th>
-                        <th>Status</th>
+                        <th style={{ color: "red" }}>Consultation date</th>
+                        <th style={{ color: "red" }}>Guidance publication date</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {clickUp.map(task =>
-                        <tr key={task.id}>
-                            <td>{planningTools.find(schedule => schedule.acid === task.id) ? planningTools.find(schedule => schedule.acid === task.id).appraisal : "-"}</td>
-                            <td>{task.name}</td>
-                            <td>{task.id}</td>
-                            <td>{planningTools.find(schedule => schedule.acid === task.id) ? planningTools.find(schedule => schedule.acid === task.id).processType : "-"}</td>
-                            <td>{planningTools.find(schedule => schedule.acid === task.id) ? planningTools.find(schedule => schedule.acid === task.id).committeeLetter : "-"}</td>
-                            <td>{task.creator.username}</td>
-                            <td>{task.status.status}</td>
+                    {clickUpLists.map(list =>
+                        <tr key={list.listID}>
+                            <td>{list.listName}</td>
+                            <td>{planningTools.find(schedule => schedule.acid === list.listID) ? planningTools.find(schedule => schedule.acid === list.listID).appraisal : "-"}</td>
+                            <td>{list.listID}</td>
+                            <td>{planningTools.find(schedule => schedule.acid === list.listID) ? planningTools.find(schedule => schedule.acid === list.listID).processType : "-"}</td>
+                            <td>{planningTools.find(schedule => schedule.acid === list.listID) ? planningTools.find(schedule => schedule.acid === list.listID).committeeLetter : "-"}</td>
+                            <td>{moment(list.tasks.tasks.find(task => task.name === "Consultation").due_date).format("Do MMM YYYY")}</td>
+                            <td>{moment(list.tasks.tasks.find(task => task.name === "Publish guidance").due_date).format("Do MMM YYYY")}</td>
                         </tr>
                     )}
                 </tbody>
@@ -56,14 +56,14 @@ export class CombinedTable extends Component {
 
     render() {
         let contents = !this.state.loading && !this.state.loading2
-            ? CombinedTable.renderSchedulesTable(this.state.clickUp, this.state.planningTools)
+            ? CombinedTable.renderSchedulesTable(this.state.clickUpLists, this.state.planningTools)
             : <p><em>Loading...</em></p>;
 
         return (
             <div>
-                <h1>Combined tasks and schedules</h1>
-                <p>This component demonstrates fetching data from both clickup and the planning tool and combining it.</p>
-                <p>Green headings indicate data from the mock planning tools, the other data is from the ClickUp api.</p>
+                <h1>Combined lists, tasks and schedules</h1>
+                <p>This component demonstrates fetching data from both clickup and the planning tool and combining it, matching a timeline from the planning tools to a list from the appraisals folder in clickup. We then pull the relevant tasks from that lists to get the dates for those tasks.</p>
+                <p>Green headings indicate data from the mock planning tools, black is list level data from clickup, red is task level data from clickup</p>
                 {contents}
             </div>
         );

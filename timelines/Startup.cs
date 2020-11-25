@@ -39,7 +39,7 @@ namespace Timelines
                 options.UseSqlite("Data Source=timelines.db"));
 
             services.TryAddTransient<IScheduleService, ScheduleService>();
-            services.TryAddTransient<ITasksService, TasksService>();
+            services.TryAddTransient<IClickUpService, ClickUpService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

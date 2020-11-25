@@ -20,9 +20,9 @@ export class Schedules extends Component {
                 <thead>
                     <tr>
                         <th>Appraisal</th>
-                        <th>ACID</th>
+                        <th>ACID (made up to match clickup ids for now)</th>
                         <th>ProcessType</th>
-                        <th>Status</th>
+                        <th>Committee</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,7 @@ export class Schedules extends Component {
                             <td>{schedule.appraisal}</td>
                             <td>{schedule.acid}</td>
                             <td>{schedule.processType}</td>
-                            <td>{schedule.status}</td>
+                            <td>{schedule.committeeLetter}</td>
                         </tr>
                     )}
                 </tbody>
