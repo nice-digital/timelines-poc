@@ -52,6 +52,18 @@ namespace Timelines.Controllers
             var response = _clickUpService.GetTasksWithListsAsync();
             return response;
         }
+
+        /// <summary>
+        /// GET: eg. api/ClickUpCIPTasks
+        /// </summary>
+        /// <returns></returns>
+        [Route("api/[controller]CIPTasks")]
+        [HttpGet]
+        public Task<CIPResponseTasks> GetCIPTasks()
+        {
+            var response = _clickUpService.GetCIPTasksAsync();
+            return response;
+        }
     }
 }
 

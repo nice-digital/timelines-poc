@@ -14,6 +14,7 @@ namespace Timelines.Services
         Task<ResponseTasks> GetTasksAsync(string listId = "33997373");
         Task<ResponseFolderlessLists> GetListsAsync();
         Task<IEnumerable<ListWithTasks>> GetTasksWithListsAsync();
+        Task<CIPResponseTasks> GetCIPTasksAsync();
     }
     public class ClickUpService : IClickUpService
     {
@@ -70,6 +71,24 @@ namespace Timelines.Services
                 allTasks.Add(listWithTasks);
             }
             return allTasks;
+        }
+
+        public async Task<CIPResponseTasks> GetCIPTasksAsync()
+        {
+            var baseAddress = new Uri("https://api.clickup.com/api/v2/");
+
+            using (var httpClient = new HttpClient { BaseAddress = baseAddress })
+            {
+                httpClient.DefaultRequestHeaders.TryAddWithoutValidation("authorization", Configuration["clickupAccessToken"]);
+                var route = "team/2632547/task?page=0&order_by=due_date&reverse=true&include_closed=true&custom_fields=[{\"field_id\":\"5bb24b9e-a86d-4ad5-b301-9ce08f431b1e\",\"operator\":\"=\",\"value\":true}]";
+
+                using (var response = await httpClient.GetAsync(route))
+                {
+                    string responseData = await response.Content.ReadAsStringAsync();
+                    var deserializedData = JsonConvert.DeserializeObject<CIPResponseTasks>(responseData);
+                    return deserializedData;
+                }
+            }
         }
     }
 }

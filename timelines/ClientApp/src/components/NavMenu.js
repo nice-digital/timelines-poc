@@ -43,6 +43,11 @@ export class NavMenu extends Component {
                     <Glyphicon glyph='th-list' /> Combined table
                 </NavItem>
             </LinkContainer>
+            <LinkContainer to={'/CIP'}>
+                <NavItem>
+                    <Glyphicon glyph='th-list' /> Cross institute planner
+                </NavItem>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
