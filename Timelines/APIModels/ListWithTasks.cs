@@ -1,6 +1,6 @@
 ﻿using Chinchilla.ClickUp.Responses;
 
-namespace Timelines.Models
+namespace Timelines.APIModels
 {
     public class ListWithTasks
     {
