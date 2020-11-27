@@ -1,4 +1,4 @@
-﻿namespace Timelines.Models
+﻿namespace Timelines.APIModels
 {
     public class CIPResponseTasks
     {

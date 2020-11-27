@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Timelines.Models;
+using Timelines.APIModels;
 using Timelines.Services;
 
 namespace Timelines.Controllers

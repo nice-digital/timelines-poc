@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Chinchilla.ClickUp.Responses;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using Timelines.Models;
+using Timelines.APIModels;
 
 namespace Timelines.Services
 {
@@ -24,6 +24,8 @@ namespace Timelines.Services
         {
             Configuration = configuration;
         }
+
+        // The default value for listId is an appraisals list to provide an example list with tasks that we know exists for demo purposes
         public async Task<ResponseTasks> GetTasksAsync(string listId = "33997373")
         {
             var baseAddress = new Uri("https://api.clickup.com/api/v2/");
@@ -80,6 +82,7 @@ namespace Timelines.Services
             using (var httpClient = new HttpClient { BaseAddress = baseAddress })
             {
                 httpClient.DefaultRequestHeaders.TryAddWithoutValidation("authorization", Configuration["clickupAccessToken"]);
+                // We are filtering the tasks using a custom field that indeicates that a task is intended to be seen on the CIP
                 var route = "team/2632547/task?page=0&order_by=due_date&reverse=true&include_closed=true&custom_fields=[{\"field_id\":\"5bb24b9e-a86d-4ad5-b301-9ce08f431b1e\",\"operator\":\"=\",\"value\":true}]";
 
                 using (var response = await httpClient.GetAsync(route))
